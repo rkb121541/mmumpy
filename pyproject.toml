@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "mmumpy"
-version = "1.0"
+version = "1.1"
 description = "Matrix Math Library"
 authors = [ { name = "rkb121541" } ]
 readme = "README.md"

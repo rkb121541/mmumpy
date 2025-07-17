@@ -1,23 +1,19 @@
 Metadata-Version: 2.4
 Name: mmumpy
-Version: 1.0
-Summary: Matrix library
+Version: 1.1
+Summary: Matrix Math Library
 Author: rkb121541
 License: MIT
 Description-Content-Type: text/markdown
+License-File: LICENSE
+Dynamic: license-file
 
-# bumpy
+# mmumpy
 
 You can pip install it by doing:
 
 ```sh
-pip install bumpy
+pip install mmumpy
 ```
 
-This package is me reimplementing some of numpy's matrix manipulations.
-
-My implementations are not made to be efficient. I made this python package because I initially already made some of these functions for fun and I thought I'd make a package to put it all together into something. It is also for me to learn how to make python packages.
-
-Some of the things I did include:
-
-* Created my own type of error called `MatrixError`
+This package includes my implementations of some of numpy's matrix manipulations.
