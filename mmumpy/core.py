@@ -1,8 +1,8 @@
 from typing import Union
 from fractions import Fraction
-from functools import wraps
+from .decorators import preprocessMatrix, postprocessMatrix
 
-Number = Union[int, Fraction]
+Number = Union[int, float, Fraction]
 
 class MatrixError(Exception):
     '''
@@ -10,24 +10,22 @@ class MatrixError(Exception):
     '''
     pass
 
-def preprocessMatrix(matrix: list[list[Number]]) -> bool:
-    '''
-    Decorator: Validates matrix and converts its elements to fractions
-    '''
-    @wraps(func)
-    def wrapper(matrix: list[list[Number]]):
-        if not isinstance(matrix, list) or not all(isinstance(row, list) for row in matrix):
-            matrix = [[Fraction(cell) for cell in row] for row in matrix]
-        return func(matrix)
-    return wrapper
-
-@preprocessMatrix
 def shape(matrix: list[list[Number]]) -> tuple[int, int]:
     '''
     Returns the shape of the matrix in the format (rows, columns)
     '''
     return (len(matrix), len(matrix[0]))
 
+@postprocessMatrix
+@preprocessMatrix
+def transpose(matrix: list[list[Number]]) -> list[list[Number]]:
+    '''
+    Returns the transpose of the input matrix
+    '''
+    rows, cols = len(matrix), len(matrix[0])
+    return [[matrix[i][j] for i in range(rows)] for j in range(cols)]
+
+@postprocessMatrix
 @preprocessMatrix
 def inverse2x2(matrix: list[list[Number]]) -> list[list[Number]]:
     '''
@@ -44,6 +42,7 @@ def inverse2x2(matrix: list[list[Number]]) -> list[list[Number]]:
         [-c * invDet, a * invDet]
     ]
 
+@postprocessMatrix
 @preprocessMatrix
 def inverse3x3(matrix: list[list[Number]]) -> list[list[Number]]:
     '''
@@ -69,6 +68,7 @@ def inverse3x3(matrix: list[list[Number]]) -> list[list[Number]]:
     inverseMatrix = [[invDet * adjointMatrix[i][j] for j in range(3)] for i in range(3)]
     return inverseMatrix
 
+@postprocessMatrix
 @preprocessMatrix
 def inverse(matrix: list[list[Number]]) -> list[list[Number]]:
     '''
@@ -86,22 +86,5 @@ def inverse(matrix: list[list[Number]]) -> list[list[Number]]:
         raise MatrixError("Can only compute the inverse of 2x2 or 3x3 matrices for now")
 
 @preprocessMatrix
-def transpose(matrix: list[list[Number]]) -> list[list[Number]]:
-    '''
-    Returns the transpose of the input matrix
-    '''
-    rows, cols = len(matrix), len(matrix[0])
-    return [[matrix[i][j] for i in range(rows)] for j in range(cols)]
-
-@preprocessMatrix
 def eigenvectors(matrix: list[list[Number]]):
     pass
-
-def main():
-    matrix = [[1,2,3], [4,5,6], [7,8,9]]
-    matrix = [[1,2], [3,4], [5,6]]
-    # matrix = [[2,1], [1,2]]
-    print(transpose(matrix))
-
-if __name__ == "__main__":
-    main()

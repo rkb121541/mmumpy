@@ -1,9 +1,17 @@
-# mmumpy
+Metadata-Version: 2.4
+Name: mmumpy
+Version: 1.0
+Summary: Matrix library
+Author: rkb121541
+License: MIT
+Description-Content-Type: text/markdown
+
+# bumpy
 
 You can pip install it by doing:
 
 ```sh
-pip install mmumpy
+pip install bumpy
 ```
 
 This package is me reimplementing some of numpy's matrix manipulations.

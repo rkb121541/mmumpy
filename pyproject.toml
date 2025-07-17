@@ -1,0 +1,15 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "mmumpy"
+version = "1.0"
+description = "Matrix math library"
+authors = [ { name = "rkb121541" } ]
+readme = "README.md"
+license = { text = "MIT" }
+dependencies = []
+
+[projects.urls]
+"Homepage" = "https://github.com/rkb121541/mmumpy"
